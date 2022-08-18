@@ -9,19 +9,24 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
+import { phonebookApi } from './phoneBook/phoneBookApi';
 
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    contacts: null,
+    [phonebookApi.reducerPath]: phonebookApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+
+  middleware: 
+    getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).concat(phonebookApi.middleware)
+   
 });
+
 
 export const persistor = persistStore(store);
