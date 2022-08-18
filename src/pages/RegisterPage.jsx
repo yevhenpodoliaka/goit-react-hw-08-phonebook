@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "redux/auth/authOptions";
+
 
 
 const styles = {
@@ -13,7 +16,7 @@ const styles = {
 
 };
 export default function RegisterPage() {
-
+const dispatch=useDispatch()
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,7 +38,7 @@ export default function RegisterPage() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    
+    dispatch(registerUser({name,email,password}))
     setName('');
     setEmail('');
     setPassword('');
