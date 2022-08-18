@@ -1,6 +1,5 @@
 // import toast from 'react-hot-toast';
 // import { useEffect } from 'react';
-import s from './Contactlist.module.css';
 import ContactItem from '../ContactItem/ContactItem';
 // import { useSelector } from 'react-redux';
 import {
@@ -32,7 +31,7 @@ const Contactlist = () => {
 
   return (
     <>
-      <ul className={s.list}>
+      <ul >
         {contacts ? (
           contacts?.map(({ id, name, phone }) => (
             <ContactItem

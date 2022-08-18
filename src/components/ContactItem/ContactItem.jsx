@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import s from './CoontactItem.module.css';
+
 
 const ContactItem = ({ name, number, onDeleteContact }) => {
   return (
-    <li className={s.item}>
+    <li>
       <p>
         {name}:{number}
       </p>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
-import s from './ContactForm.module.css';
+
 import {
   useAddContactMutation,
   useGetContactsQuery,
@@ -42,10 +42,11 @@ function ContactForm() {
   };
 
   const hasContact = () => {
-    contacts.find(el => el.name.toLowerCase() === name.toLowerCase())
+    contacts?.find(el => el.name.toLowerCase() === name.toLowerCase())
       ? toast.error(`${name} is already in contacts`)
       : addContact({ name, number });
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -73,7 +74,7 @@ function ContactForm() {
           onChange={handleChange}
         />
       </label>
-      <button className={s.button} type="submit">
+      <button type="submit">
         Add Contact
       </button>
     </form>
