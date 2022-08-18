@@ -1,8 +1,8 @@
-import toast from 'react-hot-toast';
-import { useEffect } from 'react';
+// import toast from 'react-hot-toast';
+// import { useEffect } from 'react';
 import s from './Contactlist.module.css';
 import ContactItem from '../ContactItem/ContactItem';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import {
   useGetContactsQuery,
   useDeleteContactMutation,
@@ -11,7 +11,8 @@ import {
 
 const Contactlist = () => {
   const { data: contacts } = useGetContactsQuery();
-  const [deleteContact, { isSuccess, data }] = useDeleteContactMutation();
+  const [deleteContact] = useDeleteContactMutation();
+  // const [deleteContact, { isSuccess, data }] = useDeleteContactMutation();
 
 //   const value = useSelector(getFilterValue);
 //   useEffect(() => {
