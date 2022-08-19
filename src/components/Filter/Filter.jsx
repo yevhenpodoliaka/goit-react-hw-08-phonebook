@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter, getFilterValue } from '../../redux/phoneBook/filterSlice';
+import { Label, Input, FilterWrap } from 'components/Form.styled';
+
 
 const Filter = () => {
   const value = useSelector(getFilterValue);
@@ -8,10 +10,12 @@ const Filter = () => {
     dispatch(setFilter(e.target.value));
   };
   return (
-    <label>
-      Find contacts by name
-      <input type="text" value={value} onChange={onChahgeFilter} />
-    </label>
+    <FilterWrap>
+      <Label>
+        Find contacts by name
+        <Input type="text" value={value} onChange={onChahgeFilter} />
+      </Label>
+    </FilterWrap>
   );
 };
 

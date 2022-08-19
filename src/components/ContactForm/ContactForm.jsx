@@ -4,7 +4,7 @@ import { Form, Label, Input, Btn } from '../Form.styled';
 
 import {
   useAddContactMutation,
-  // useGetContactsQuery,
+  useGetContactsQuery,
 } from '../../redux/phoneBook/phoneBookApi';
 
 function ContactForm() {
@@ -12,7 +12,10 @@ function ContactForm() {
   const [number, setNumber] = useState('');
 
   const [addContact, { isSuccess, data }] = useAddContactMutation();
-  // const { data: contacts } = useGetContactsQuery();
+  const { data: contacts } = useGetContactsQuery();
+
+
+
 
   useEffect(() => {
     if (isSuccess) {
@@ -34,10 +37,15 @@ function ContactForm() {
         break;
     }
   };
+  const hasContact = () => {
+    contacts.find(el => el.name.toLowerCase() === name.toLowerCase())
+      ? toast.error(`${name} is already in contacts`)
+      : addContact({ name, number });
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    addContact({ name, number });
+    hasContact();
     setName('');
     setNumber('');
   };
