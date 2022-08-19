@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 import {
   useAddContactMutation,
-  useGetContactsQuery,
+  // useGetContactsQuery,
 } from '../../redux/phoneBook/phoneBookApi';
 
 function ContactForm() {
@@ -11,7 +11,7 @@ function ContactForm() {
   const [number, setNumber] = useState('');
 
   const [addContact, { isSuccess, data }] = useAddContactMutation();
-  const { data: contacts } = useGetContactsQuery();
+  // const { data: contacts } = useGetContactsQuery();
 
   useEffect(() => {
     if (isSuccess) {
@@ -36,20 +36,17 @@ function ContactForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    hasContact();
+    addContact({ name, number });
+    console.log(addContact);
     setName('');
     setNumber('');
   };
 
-  const hasContact = () => {
-    contacts?.find(el => el.name.toLowerCase() === name.toLowerCase())
-      ? toast.error(`${name} is already in contacts`)
-      : addContact({ name, number });
-  };
+
 
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
       <label>
         Name
         <input

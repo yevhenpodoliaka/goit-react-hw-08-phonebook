@@ -38,6 +38,9 @@ const dispatch=useDispatch()
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!name&&!email&&!password) {
+    return
+  }
     dispatch(registerUser({name,email,password}))
     setName('');
     setEmail('');
