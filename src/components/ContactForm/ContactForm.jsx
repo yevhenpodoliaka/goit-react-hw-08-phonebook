@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { Form, Label, Input, Btn } from '../Form.styled';
 
 import {
   useAddContactMutation,
@@ -46,10 +47,13 @@ function ContactForm() {
 
 
   return (
-    <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
-      <label>
+    <Form
+      onSubmit={handleSubmit}
+      style={{ display: 'flex', flexDirection: 'column' }}
+    >
+      <Label>
         Name
-        <input
+        <Input
           value={name}
           type="text"
           name="name"
@@ -58,10 +62,10 @@ function ContactForm() {
           required
           onChange={handleChange}
         />
-      </label>
-      <label>
+      </Label>
+      <Label>
         Number
-        <input
+        <Input
           value={number}
           type="tel"
           name="number"
@@ -70,11 +74,9 @@ function ContactForm() {
           required
           onChange={handleChange}
         />
-      </label>
-      <button type="submit">
-        Add Contact
-      </button>
-    </form>
+      </Label>
+      <Btn type="submit">Add Contact</Btn>
+    </Form>
   );
 }
 

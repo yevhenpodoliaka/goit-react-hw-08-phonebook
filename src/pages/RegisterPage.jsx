@@ -1,20 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "redux/auth/authOptions";
+import { Form, Label, Input, Btn } from '../components/Form.styled';
 
 
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
 
-};
+
+
+
 export default function RegisterPage() {
 const dispatch=useDispatch()
   const [name, setName] = useState('');
@@ -38,7 +32,7 @@ const dispatch=useDispatch()
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!name&&!email&&!password) {
+    if (!name||!email||!password) {
     return
   }
     dispatch(registerUser({name,email,password}))
@@ -51,34 +45,34 @@ const dispatch=useDispatch()
     <div>
       <h2>RegisterPage</h2>
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
           name
-          <input type="text" name="name" value={name} onChange={handleChange} />
-        </label>
+          <Input type="text" name="name" value={name} onChange={handleChange} />
+        </Label>
 
-        <label style={styles.label}>
+        <Label>
           email
-          <input
+          <Input
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <label style={styles.label}>
+        <Label>
           password
-          <input
+          <Input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <button type="submit">registred</button>
-      </form>
+        <Btn type="submit">to register</Btn>
+      </Form>
     </div>
   );
 }

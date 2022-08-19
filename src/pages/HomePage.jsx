@@ -11,7 +11,11 @@ export default function HomePage() {
   return (
     <>
       <h2>HomePage</h2>
-      {!isLoggedIn && <p>Loin or Register</p>}
+      {!isLoggedIn && (
+        <p>
+          Welcome!!! to work with the application you need to register or log in
+        </p>
+      )}
       {isLoggedIn && <p>Hello {userName}</p>}
     </>
   );

@@ -1,18 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logInUser } from 'redux/auth/authOptions';
+import { Form, Label,Input, Btn } from '../components/Form.styled';
 
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
 
 export default function LoginPage() {
 const dispatch =useDispatch()
@@ -33,6 +23,9 @@ const dispatch =useDispatch()
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (!email || !password) {
+      return
+    }
   dispatch(logInUser({email,password}))
     setEmail('');
     setPassword('');
@@ -40,29 +33,29 @@ const dispatch =useDispatch()
   return (
     <div>
       <h2>loginPage</h2>
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Label>
           email
-          <input
+          <Input
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <label style={styles.label}>
+        <Label>
           password
-          <input
+          <Input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
           />
-        </label>
+        </Label>
 
-        <button type="submit">login</button>
-      </form>
+        <Btn type="submit">login</Btn>
+      </Form>
     </div>
   );
 
