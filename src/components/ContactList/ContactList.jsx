@@ -1,39 +1,32 @@
-// import toast from 'react-hot-toast';
-// import { useEffect } from 'react';
 import ContactItem from '../ContactItem/ContactItem';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { getFilterValue } from '../../redux/phoneBook/filterSlice';
 import {
   useGetContactsQuery,
   useDeleteContactMutation,
 } from '../../redux/phoneBook/phoneBookApi';
-// import { getFilterValue } from '../../redux/filterSlice';
 
 const Contactlist = () => {
+
   const { data: contacts } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
-  // const [deleteContact, { isSuccess, data }] = useDeleteContactMutation();
 
-//   const value = useSelector(getFilterValue);
-//   useEffect(() => {
-//     if (isSuccess) {
-//       toast.success(`contact ${data.name} deleted`);
-//     }
-//   }, [isSuccess, data]);
+  const filterValue = useSelector(getFilterValue);
 
-//   const getVisiblecontacts = () => {
-//     const normalizedFilter = value.toLowerCase();
-//     return contacts?.filter(contact =>
-//       contact.name.toLowerCase().includes(normalizedFilter)
-//     );
-//   };
+  const getVisiblecontacts = () => {
+    const normalizedFilter = filterValue.toLowerCase();
+    return contacts?.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+  };
 
-//   const visibleContacts = getVisiblecontacts();
+  const visibleContacts = getVisiblecontacts();
 
   return (
     <>
-      <ul >
-        {contacts ? (
-          contacts?.map(({ id, name, number }) => (
+      <ul>
+        {visibleContacts ? (
+          visibleContacts?.map(({ id, name, number }) => (
             <ContactItem
               key={id}
               name={name}
