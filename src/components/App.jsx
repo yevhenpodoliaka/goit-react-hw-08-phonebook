@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { lazy } from 'react';
@@ -51,6 +52,7 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Toaster toastOptions={{ duration: 1500 }} />
     </>
   );
 };

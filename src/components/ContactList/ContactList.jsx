@@ -33,11 +33,11 @@ const Contactlist = () => {
     <>
       <ul >
         {contacts ? (
-          contacts?.map(({ id, name, phone }) => (
+          contacts?.map(({ id, name, number }) => (
             <ContactItem
               key={id}
               name={name}
-              number={phone}
+              number={number}
               onDeleteContact={() => deleteContact(id)}
             />
           ))

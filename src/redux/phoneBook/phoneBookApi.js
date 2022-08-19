@@ -33,8 +33,8 @@ export const phonebookApi = createApi({
     addContact: builder.mutation({
       query: values => ({
         url: 'contacts',
-        method: 'post',
-        body: values,
+        method: 'POST',
+        data: values,
       }),
       invalidatesTags: ['Contacts'],
     }),
