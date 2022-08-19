@@ -6,8 +6,10 @@ import { Container } from 'GlobalStyle';
 const Layout = () => {
   return (
     <>
-      <AppBar />
+   
       <Container>
+        <AppBar />
+
         <Suspense fallback={null}>
           <Outlet />
         </Suspense>
