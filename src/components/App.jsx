@@ -63,7 +63,7 @@ export const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
-      <Toaster toastOptions={{ duration: 1500 }} />
+      <Toaster toastOptions={{ duration: 2500 }} />
     </>
   );
 };

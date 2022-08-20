@@ -1,4 +1,6 @@
-import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import{getIsLoggedIn} from'../redux/auth/authSelector'
 import { registerUser } from "redux/auth/authOptions";
 import useLocalStorage from "hooks/useLockalStorage";
 import { Form, Label, Input, Btn } from '../components/Form.styled';
@@ -10,7 +12,7 @@ const dispatch=useDispatch()
   const [email, setEmail] = useLocalStorage('email','');
   const [password, setPassword] = useLocalStorage('password','');
 
- 
+   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -27,18 +29,22 @@ const dispatch=useDispatch()
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!name||!email||!password) {
+    if (!name || !email || !password) {
+      toast.error('all form fields must be filled out')
     return
   }
-    dispatch(registerUser({name,email,password}))
-    setName('');
-    setEmail('');
-    setPassword('');
+    dispatch(registerUser({ name, email, password }))
+    
+    if (isLoggedIn) {
+      setName('');
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
     <div>
-      <h2>RegisterPage</h2>
+      <h2>Register  Page</h2>
 
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Label>
