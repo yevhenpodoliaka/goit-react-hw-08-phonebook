@@ -4,11 +4,6 @@ import { registerUser } from "redux/auth/authOptions";
 import { Form, Label, Input, Btn } from '../components/Form.styled';
 
 
-
-
-
-
-
 export default function RegisterPage() {
 const dispatch=useDispatch()
   const [name, setName] = useState('');

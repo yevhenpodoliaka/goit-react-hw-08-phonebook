@@ -1,10 +1,11 @@
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { fetchCurrentUser } from 'redux/auth/authOptions';
+import { getIsFetchingCurrentUser } from '../redux/auth/authSelector';
 import PrivateRoute from '../components/PrivateRoute';
 import PublicRoute from './PublicRoute';
 
@@ -16,42 +17,52 @@ const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(getIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index="/" element={<HomePage />} />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute restricted>
-                <ContactListPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <PublicRoute restricted>
-                <RegisterPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-        </Route>
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      {!isFetchingCurrentUser && (
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              index="/"
+              element={
+                <PublicRoute>
+                  <HomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute restricted>
+                  <ContactListPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      )}
       <Toaster toastOptions={{ duration: 1500 }} />
     </>
   );
