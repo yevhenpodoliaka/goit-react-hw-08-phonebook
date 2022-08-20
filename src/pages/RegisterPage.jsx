@@ -1,14 +1,14 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "redux/auth/authOptions";
+import useLocalStorage from "hooks/useLockalStorage";
 import { Form, Label, Input, Btn } from '../components/Form.styled';
 
 
 export default function RegisterPage() {
 const dispatch=useDispatch()
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useLocalStorage('name','');
+  const [email, setEmail] = useLocalStorage('email','');
+  const [password, setPassword] = useLocalStorage('password','');
 
  
 

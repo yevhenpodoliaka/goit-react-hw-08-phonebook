@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import useLocalStorage from 'hooks/useLockalStorage';
 import { logInUser } from 'redux/auth/authOptions';
 import { Form, Label,Input, Btn } from '../components/Form.styled';
 
@@ -7,8 +7,8 @@ import { Form, Label,Input, Btn } from '../components/Form.styled';
 export default function LoginPage() {
 const dispatch =useDispatch()
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useLocalStorage('email','');
+  const [password, setPassword] = useLocalStorage('password','');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {

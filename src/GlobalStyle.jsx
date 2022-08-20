@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
       'Helvetica Neue', sans-serif;
     min-height: 100vh;
     font-style: normal;
+    background-color:grey;
   }
   h1,
   h2,

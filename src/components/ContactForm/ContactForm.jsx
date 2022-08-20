@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useLocalStorage from 'hooks/useLockalStorage';
 import toast from 'react-hot-toast';
 import { Form, Label, Input, Btn } from '../Form.styled';
 
@@ -8,8 +9,8 @@ import {
 } from '../../redux/phoneBook/phoneBookApi';
 
 function ContactForm() {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [name, setName] = useLocalStorage('name','');
+  const [number, setNumber] = useLocalStorage('number','');
 
   const [addContact, { isSuccess, data }] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
