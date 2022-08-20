@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { Item, DeleteBtn } from './ContactItem.styled';
 
-const ContactItem = ({ name, number, onDeleteContact }) => {
+
+export default function ContactItem ({ name, number, onDeleteContact }) {
   return (
     <Item>
       <p>{name}</p>
@@ -18,4 +19,3 @@ ContactItem.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-export default ContactItem;

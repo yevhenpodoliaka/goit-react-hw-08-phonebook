@@ -2,20 +2,17 @@ import { useEffect } from 'react';
 import useLocalStorage from 'hooks/useLockalStorage';
 import toast from 'react-hot-toast';
 import { Form, Label, Input, Btn } from '../Form.styled';
-
 import {
   useAddContactMutation,
   useGetContactsQuery,
 } from '../../redux/phoneBook/phoneBookApi';
 
-function ContactForm() {
+export default function ContactForm() {
   const [name, setName] = useLocalStorage('name','');
   const [number, setNumber] = useLocalStorage('number','');
 
   const [addContact, { isSuccess, data }] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
-
-
 
 
   useEffect(() => {
@@ -51,9 +48,6 @@ function ContactForm() {
     setNumber('');
   };
 
-
-
-
   return (
     <Form
       onSubmit={handleSubmit}
@@ -88,4 +82,4 @@ function ContactForm() {
   );
 }
 
-export default ContactForm;
+

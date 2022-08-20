@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
 import { Container } from 'GlobalStyle';
 
-const Layout = () => {
+export default function Layout () {
   return (
     <>
       
@@ -16,4 +16,4 @@ const Layout = () => {
     </>
   );
 };
-export default Layout;
+

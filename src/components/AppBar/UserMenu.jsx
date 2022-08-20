@@ -5,8 +5,6 @@ import { logOutUser } from "redux/auth/authOptions";
 import avatar from '../../images/avatar.png'
 import { UserWrap, LogOutBtn } from './AppBar.styled';
 
-
-
 export default function UserMenu() {
   const dispatch=useDispatch()
   const email = useSelector(getUserEmail)

@@ -6,8 +6,7 @@ import {
   useDeleteContactMutation,
 } from '../../redux/phoneBook/phoneBookApi';
 
-const Contactlist = () => {
-
+export default function Contactlist  ()  {
   const { data: contacts } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
@@ -43,4 +42,4 @@ const Contactlist = () => {
   );
 };
 
-export default Contactlist;
+

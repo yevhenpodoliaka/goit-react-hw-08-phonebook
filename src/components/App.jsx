@@ -6,15 +6,14 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { fetchCurrentUser } from 'redux/auth/authOptions';
 import { getIsFetchingCurrentUser } from '../redux/auth/authSelector';
-import PrivateRoute from '../components/PrivateRoute';
-import PublicRoute from './PublicRoute';
-import NotFoundPage from '../pages/NotFoundPage'
+import PrivateRoute from '../routes/PrivateRoute';
+import PublicRoute from '../routes/PublicRoute';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ContactListPage = lazy(() => import('../pages/ContactsListPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -60,8 +59,8 @@ export const App = () => {
                 </PublicRoute>
               }
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
       <Toaster toastOptions={{ duration: 2500 }} />
