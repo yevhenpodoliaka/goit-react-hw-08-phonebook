@@ -5,10 +5,10 @@ import Filter from 'components/Filter/Filter';
 export default function ContactListPage() {
   
   return (
-    <>
+    <main>
       <ContactForm />
       <Filter/>
       <Contactlist />
-    </>
+    </main>
   );
 }

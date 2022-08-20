@@ -1,18 +1,17 @@
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import{getIsLoggedIn} from'../redux/auth/authSelector'
-import { registerUser } from "redux/auth/authOptions";
-import useLocalStorage from "hooks/useLockalStorage";
+import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsLoggedIn } from '../redux/auth/authSelector';
+import { registerUser } from 'redux/auth/authOptions';
+import { useState } from 'react';
 import { Form, Label, Input, Btn } from '../components/Form.styled';
 
-
 export default function RegisterPage() {
-const dispatch=useDispatch()
-  const [name, setName] = useLocalStorage('name','');
-  const [email, setEmail] = useLocalStorage('email','');
-  const [password, setPassword] = useLocalStorage('password','');
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -30,11 +29,11 @@ const dispatch=useDispatch()
   const handleSubmit = e => {
     e.preventDefault();
     if (!name || !email || !password) {
-      toast.error('all form fields must be filled out')
-    return
-  }
-    dispatch(registerUser({ name, email, password }))
-    
+      toast.error('all form fields must be filled out');
+      return;
+    }
+    dispatch(registerUser({ name, email, password }));
+
     if (isLoggedIn) {
       setName('');
       setEmail('');
@@ -43,8 +42,8 @@ const dispatch=useDispatch()
   };
 
   return (
-    <div>
-      <h2>Register  Page</h2>
+    <main>
+      <h2>Register Page</h2>
 
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Label>
@@ -74,6 +73,6 @@ const dispatch=useDispatch()
 
         <Btn type="submit">to register</Btn>
       </Form>
-    </div>
+    </main>
   );
 }

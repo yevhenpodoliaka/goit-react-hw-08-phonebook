@@ -1,14 +1,14 @@
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import useLocalStorage from 'hooks/useLockalStorage';
+import { useState } from 'react';
 import { logInUser } from 'redux/auth/authOptions';
 import { Form, Label, Input, Btn } from '../components/Form.styled';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useLocalStorage('email', '');
-  const [password, setPassword] = useLocalStorage('password', '');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -24,7 +24,7 @@ export default function LoginPage() {
   const handleSubmit = e => {
     e.preventDefault();
     if (!email || !password) {
-       toast.error('all form fields must be filled out');
+      toast.error('all form fields must be filled out');
       return;
     }
     dispatch(logInUser({ email, password }));
@@ -32,8 +32,8 @@ export default function LoginPage() {
     setPassword('');
   };
   return (
-    <div>
-      <h2>login Page</h2>
+    <main>
+      <h2>Login Page</h2>
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Label>
           email
@@ -57,6 +57,6 @@ export default function LoginPage() {
 
         <Btn type="submit">login</Btn>
       </Form>
-    </div>
+    </main>
   );
 }

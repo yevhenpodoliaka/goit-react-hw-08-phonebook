@@ -8,12 +8,13 @@ import { fetchCurrentUser } from 'redux/auth/authOptions';
 import { getIsFetchingCurrentUser } from '../redux/auth/authSelector';
 import PrivateRoute from '../components/PrivateRoute';
 import PublicRoute from './PublicRoute';
+import NotFoundPage from '../pages/NotFoundPage'
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ContactListPage = lazy(() => import('../pages/ContactsListPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
+
 
 export const App = () => {
   const dispatch = useDispatch();

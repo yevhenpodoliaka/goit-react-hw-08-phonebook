@@ -48,10 +48,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+  main{
+
+  padding: 15px;
+  }
 `;
 
 export const Container = styled.div`
 width:320px;
-  padding: 20px;
-  margin: 0 auto;
+margin: 0 auto;
 `

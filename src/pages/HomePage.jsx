@@ -6,14 +6,14 @@ export default function HomePage() {
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   return (
-    <>
+    <main>
       <h2>HomePage</h2>
       {!isLoggedIn && (
         <p>
           Welcome!!! to work with the application you need to register or log in
         </p>
       )}
-      {isLoggedIn && <p>Hello {userName}</p>}
-    </>
+      {isLoggedIn && <p>Welcome, {userName} to the contacts book application</p>}
+    </main>
   );
 }
