@@ -28,6 +28,7 @@ export const phonebookApi = createApi({
   endpoints: builder => ({
     getContacts: builder.query({
       query: () => ({ url: 'contacts', method: 'get' }),
+      keepUnusedDataFor:1,
       providesTags: ['Contacts'],
     }),
     addContact: builder.mutation({
