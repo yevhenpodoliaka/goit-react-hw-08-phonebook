@@ -2,13 +2,13 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route,Navigate } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { fetchCurrentUser } from 'redux/auth/authOptions';
 import { getIsFetchingCurrentUser } from '../redux/auth/authSelector';
 import PrivateRoute from '../routes/PrivateRoute';
 import PublicRoute from '../routes/PublicRoute';
-import NotFoundPage from '../pages/NotFoundPage';
+
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const ContactListPage = lazy(() => import('../pages/ContactsListPage'));
@@ -59,7 +59,7 @@ export const App = () => {
                 </PublicRoute>
               }
             />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<Navigate to="contacts" replace={true} />} />
           </Route>
         </Routes>
       )}
